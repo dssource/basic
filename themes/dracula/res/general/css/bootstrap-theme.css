@@ -1,0 +1,45 @@
+body {
+    background: #2b2b2b;
+    color: #bababa;
+    font-family: Monospace;
+    font-size: 12pt;
+    line-height: 1.0;
+}
+.table-striped > tbody > tr:nth-of-type(odd) {
+    background-color: #3b3e41;
+}
+.form-control[disabled], .form-control[readonly], fieldset[disabled] .form-control {
+    background-color: #585c5f;
+    opacity: 1;
+}
+.form-control, .input-group-addon, textarea, input {
+    background: #6d7174;
+    color: #bababa;
+    border-color: #313335;
+}
+.breadcrumb {
+    background-color: #313335;
+}
+a {
+    text-decoration: none;
+    color: #cb9140;
+}
+a:hover {
+    text-decoration: underline;
+    color: #e0a047;
+}
+.list-group-item {
+    background: #313335;
+    color: #ffffff;
+}
+.navbar-nav > li > .dropdown-menu {
+    background: #313335;
+    color: #fffafa;
+}
+.dropdown-menu > li > a {
+    color: #fffafa;
+}
+.dropdown-menu > li > a:hover, .dropdown-menu > li > a:focus{
+    color: #fffafa;
+    background: #3c3f41;
+}
