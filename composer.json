@@ -1,0 +1,23 @@
+{
+  "name": "dssource/basic",
+  "description": "DS-CMS basic version, used Yii2 Framework",
+  "keywords": ["yii2", "framework", "basic", "project template", "cms"],
+  "homepage": "https://digital-solution.ru",
+  "type": "project",
+  "license": "BSD-3-Clause",
+  "support": {
+    "source": "https://github.com/dssource/basic"
+  },
+  "require": {
+    "php": ">=5.6.0",
+    "yiisoft/yii2": "~2.0.14",
+    "yiisoft/yii2-bootstrap": "~2.0.0",
+    "yiisoft/yii2-swiftmailer": "~2.0.0",
+    "yiisoft/yii2-jui" : "2.0.2",
+  },
+  "autoload": {
+    "psr-4": {
+      "dssource\\basic\\": "/"
+    }
+  },
+}
