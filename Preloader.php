@@ -22,25 +22,20 @@ class Preloader implements BootstrapInterface
         Yii::setAlias('@dssource/basic', __DIR__);
         //Ошибки
         // Обработчик ошибок
-        Yii::$app->errorHandler->errorAction = '/error';
+        Yii::$app->errorHandler->errorAction = 'site/default/error';
+
         // Темы
-        $currentTheme = '@dssource/basic/themes/'.Themes::activeTheme();
-        $defaultTheme = '@dssource/basic/themes/dracula';
-        Yii::$app->view->theme = new Theme(
-            [
-                'basePath' => $currentTheme,
-                'baseUrl' => '@web',
-                'pathMap' => [
-                    '@app/views' => [$currentTheme, $defaultTheme],
-                    '@dssource/basic/core/views' => [$currentTheme, $defaultTheme],
-                ],
-            ]
-        );
+        $currentTheme = '@app/themes/'.Themes::activeTheme();
+        $defaultTheme = '@app/themes/dracula';
+
 
         // Динамическое подключение модулей
         // получаем список модулей
         $modules = new Module;
         $modules = $modules->findActive();
+
+        // Формируем pathMap
+        $pathMap = [];
 
         foreach ($modules as $module)
         {
@@ -58,29 +53,23 @@ class Preloader implements BootstrapInterface
 
             Yii::$app->setModule($module->name, $options);
             Yii::$app->getModule($module->name)->bootstrap(Yii::$app);
+
+            $pathMap[Yii::$app->getModule($module->name)->viewPath] = [$currentTheme, $defaultTheme];
             //var_dump($module);
         }
-        /*
 
-        // Регистрируем модуль сайта
-        Yii::$app->setModule('site', [
-            'class' => 'dssource\basic\core\SiteModule',
-        ]);
-        Yii::$app->getModule('site')->bootstrap(Yii::$app);
 
-        // Регистрируем модуль пользователей
-        Yii::$app->setModule('user', [
-            'class' => 'dssource\basic\core\UserModule',
-        ]);
-        Yii::$app->getModule('user')->bootstrap(Yii::$app);
+        Yii::$app->view->theme = new Theme(
+            [
+                'basePath' => $currentTheme,
+                'baseUrl' => '@web',
+                'pathMap' => array_merge([
+                    '@app/views' => [$currentTheme, $defaultTheme],
+                    '@dssource/basic/core/views' => [$currentTheme, $defaultTheme],
+                ],
+                $pathMap)
+            ]
+        );
 
-        // // Регистрируем модуль Админа
-        Yii::$app->setModule('admin', [
-            'class' => 'dssource\basic\core\AdminModule',
-        ]);
-        Yii::$app->getModule('admin')->bootstrap(Yii::$app);
-
-        //Exit("\nEnd of config");
-        */
     }
 }

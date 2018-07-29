@@ -34,9 +34,25 @@ class User extends ActiveRecord implements IdentityInterface
         ];
     }
 
+    public function getImage()
+    {
+        if($this->photo == '')
+            return $this->defaultImage;
+        else
+            return $this->photo;
+    }
     public function getSex($int)
     {
         return (self::getSexTypes()[$int] == '') ? 'не определен' : self::getSexTypes()[$int];
+    }
+
+    public function getFullName()
+    {
+        $names[] = $this->surname;
+        $names[] = $this->name;
+        $names[] = $this->last_name;
+
+        return join(" ", $names);
     }
 
     public function getStatusNames()

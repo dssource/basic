@@ -56,7 +56,7 @@ class Themes extends ActiveRecord
 
     public static function activeThemeRootPath()
     {
-        return Yii::getAlias('@dssource/basic').'/themes/'.static::activeTheme();
+        return Yii::getAlias('@app').'/themes/'.static::activeTheme();
     }
 
 

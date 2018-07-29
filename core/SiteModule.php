@@ -29,6 +29,7 @@ class SiteModule extends \yii\base\Module implements ModuleInterface
             // Ошибки
             'error' => 'default/error',
             // Разделы
+            'sections' => 'default/section-default-view',
             '<section:[\w-\/]+>' => 'default/section-view',
             //Страницы
             '<page:[\w-]+>.html' => 'default/page-view',

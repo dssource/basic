@@ -48,7 +48,9 @@ class AdminModule extends \yii\base\Module implements ModuleInterface
             'menu/<action:(update|delete)>/<id:[\d]+>' => 'admin-menu/<action>',
             //Пользователи
             'user' => 'admin-user/index',
+            'user/create' => 'admin-user/create',
             'user/<action:(view|update|delete|activate|block|role)>/<id:[\d+]>' => 'admin-user/<action>',
+            // Полномочия
             'rbac' => 'admin-rbac/index',
             'rbac/create/<item:(role|permission)>' => 'admin-rbac/create',
             'rbac/deletePermission/<name:[\w-]+>' => 'admin-rbac/delete-permission',

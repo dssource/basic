@@ -32,7 +32,9 @@ class AdminSectionsController extends Controller
     {
         $model = new Section();
         //Default value
+        $model->scenario = Section::SCENARIO_SECTION_FOR_PAGES;
 
+        // Load POST data
         if($model->load(Yii::$app->request->post()))
         {
             //exit(var_dump(Yii::$app->request->post()));

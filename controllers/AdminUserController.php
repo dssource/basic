@@ -9,7 +9,7 @@ use yii\helpers\ArrayHelper;
 use yii\web\Controller;
 use yii\web\ForbiddenHttpException;
 use dssource\basic\models\User;
-use dssource\basic\ UserModule;
+use dssource\basic\UserModule;
 
 class AdminUserController extends Controller
 {
@@ -196,5 +196,17 @@ class AdminUserController extends Controller
         Yii::$app->getSession()->setFlash("info", "Пользователь активирован");
 
         return $this->actionIndex();
+    }
+
+    public function actionCreate()
+    {
+        $model = new User();
+        $model->scenario = User::SCENARIO_ADMIN;
+        if($model->load(Yii::$app->request->post()) AND $model->validate())
+        {
+            $model->save();
+            Yii::$app->getSession()->setFlash("success", "Пользователь добавлен");
+        }
+        return $this->render('create', ['model' => $model]);
     }
 }

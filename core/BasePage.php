@@ -16,7 +16,7 @@ class BasePage extends ActiveRecord
     const NO_IMAGE = 'data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz48IURPQ1RZUEUgc3ZnIFBVQkxJQyAiLS8vVzNDLy9EVEQgU1ZHIDEuMS8vRU4iICJodHRwOi8vd3d3LnczLm9yZy9HcmFwaGljcy9TVkcvMS4xL0RURC9zdmcxMS5kdGQiPjxzdmcgdmVyc2lvbj0iMS4xIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB3aWR0aD0iNjI0IiBoZWlnaHQ9IjUxMiIgdmlld0JveD0iMCAwIDYyNCA1MTIiPjxnIGlkPSJpY29tb29uLWlnbm9yZSI+PC9nPjxwYXRoIGZpbGw9IiNFNUUzRTMiIGQ9Ik0yLjc0NyAzLjU2NnY1MDQuODdoNjIxLjM3OXYtNTA0Ljg3aC02MjEuMzc5ek01ODUuMjg5IDQ2OS41OTloLTU0My43MDZ2LTQyNy4xOTdoNTQzLjcwNnY0MjcuMTk3ek00MjkuOTQ1IDEzOS40OTJjMCAzMi4xNzMgMjYuMDgwIDU4LjI1NSA1OC4yNTUgNTguMjU1czU4LjI1NC0yNi4wODEgNTguMjU0LTU4LjI1NS0yNi4wODEtNTguMjU1LTU4LjI1NS01OC4yNTUtNTguMjU1IDI2LjA4MS01OC4yNTUgNTguMjU1ek01NDYuNDUzIDQzMC43NjJoLTQ2Ni4wMzRsMTE2LjUwOC0zMTAuNjg5IDE1NS4zNDUgMTk0LjE4MSA3Ny42NzItNTguMjU1IDExNi41MDkgMTc0Ljc2MnoiPjwvcGF0aD48L3N2Zz4=';
 
     public $imageFile;
-    public $class;
+    public $imageUploadPath = 'files/pages';
     private $_cache;
     public $sectionClassName = 'dssource\basic\core\BaseSection';
 
@@ -138,7 +138,7 @@ class BasePage extends ActiveRecord
     {
         $newName = date('dmyhis').'_page.'.strtolower($this->imageFile->extension);
 
-        $newName = Yii::$app->getModule('site')->imagePath.'/'.$newName;
+        $newName = $this->imageUploadPath.'/'.$newName;
 
         $this->imageFile->saveAs(Yii::getAlias('@webroot').'/' .$newName);
         $this->image = $newName;

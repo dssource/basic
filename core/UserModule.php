@@ -91,6 +91,8 @@ class UserModule extends \yii\base\Module implements ModuleInterface
         'routePrefix' => 'user',
         'rules' => [
             '' => 'user/index',
+            'pm' => 'message/index',
+            'pm/<action>' => 'message/<action>',
             '<action:(login|register|captcha|logout|edit)>' => 'user/<action>',
             'confirm/<username:[\w\-]+>/<actionKey:[\w\-]+>' => 'user/confirm',
             '<username:[\w-]+>' => 'user/profile',

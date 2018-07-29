@@ -3,6 +3,7 @@
 namespace dssource\basic\controllers;
 
 use dssource\basic\models\Page;
+use dssource\basic\models\Section;
 use Yii;
 use yii\web\Controller;
 use yii\web\HttpException;
@@ -24,10 +25,26 @@ class DefaultController extends Controller
         return $this->render('index');
     }
 
+    // Разделы
+    public function actionSectionDefaultView()
+    {
+        $models = Section::find()->all();
+
+        if($models == NULL) return new NotFoundHttpException("Разделы не созданы");
+        else
+            return $this->render('all-sections', ['models' => $models]);
+    }
+
     public function actionSectionView($section)
     {
-        return $this->render('sections', ['section' => $section]);
+        $model = Section::findOne(['alias' => $section]);
+
+        if($model == NULL) return new NotFoundHttpException("Страница не найдена");
+        else
+            return $this->render('sections', ['model' => $model]);
     }
+
+
 
     public function actionPageView($section = 'main', $page)
     {

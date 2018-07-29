@@ -7,7 +7,7 @@
 
 namespace dssource\basic\widgets;
 use Yii;
-use dssource\basic\assets\dracula\RedactorAsset;
+use dssource\basic\widgets\assets\RedactorAsset;
 use yii\widgets\InputWidget;
 use yii\helpers\Html;
 
